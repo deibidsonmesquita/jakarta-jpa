@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <title>Jakarta 9.1 e JSF</title>
+</h:head>
+
+<h:body>
+
+    <h:form>
+
+        <p:outputLabel value="Jakarta 9.1 e JSF 3.0 + PrimeFaces 10"/><br/>
+        <p:separator/>
+
+        <h:messages/>
+        Nome: <h:inputText value="#{homeBean.nome}" label="nome">
+                <f:validateRequired />
+              </h:inputText>
+        <br/>
+
+        <h:commandButton value="Ok" action="#{homeBean.hello()}"/><br/>
+        <h:outputLabel value="#{homeBean.nome}"/>
+
+    </h:form>
+
+</h:body>
+
+
+</html>
