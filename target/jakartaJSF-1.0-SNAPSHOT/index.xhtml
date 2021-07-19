@@ -19,14 +19,30 @@
         <p:separator/>
 
         <h:messages/>
-        Nome: <h:inputText value="#{homeBean.nome}" label="nome">
-                <f:validateRequired />
+        Nome: <h:inputText id="nome" value="#{homeBean.cliente.nome}" label="nome">
+                <f:validateRequired/>
               </h:inputText>
         <br/>
 
-        <h:commandButton value="Ok" action="#{homeBean.hello()}"/><br/>
-        <h:outputLabel value="#{homeBean.nome}"/>
+        <h:commandButton value="Ok" action="#{homeBean.hello()}">
+            <f:ajax execute="@form" render="panel"/>
+        </h:commandButton><br/>
 
+        <p:separator/>
+
+        <h3><h:outputLabel value="Listagem"/></h3>
+        <h:panelGroup id="panel">
+            <h:dataTable id="table" value="#{homeBean.listagem}" var="cli">
+                <h:column>
+                    <f:facet name="header">Codigo</f:facet>
+                    #{cli.codigo}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Name</f:facet>
+                    #{cli.nome}
+                </h:column>
+            </h:dataTable>
+        </h:panelGroup>
     </h:form>
 
 </h:body>

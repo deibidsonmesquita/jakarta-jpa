@@ -2,11 +2,15 @@ package com.gdm.jakartaJSF;
 
 import com.gdm.jakartaJSF.dao.ClienteDao;
 import com.gdm.jakartaJSF.models.Cliente;
-import jakarta.ejb.Stateless;
+import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
-import jakarta.persistence.*;
+import lombok.Getter;
+
+import java.util.ArrayList;
+import java.util.List;
+
 
 @RequestScoped
 @Named
@@ -14,25 +18,39 @@ public class HomeBean {
 
     @Inject
     private ClienteDao clienteDao;
-    private String nome = "";
+
+    @Inject
+    private Cliente cliente;
+
+    @Getter
+    private List<Cliente> listagem = new ArrayList<>();
 
     public HomeBean() {
     }
 
-    public void hello() {
-        nome = "Olá " + nome;
+    @PostConstruct
+    public void init() {
         try {
-            clienteDao.add(new Cliente(nome));
+            listagem = clienteDao.getClientes();
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
     }
 
-    public String getNome() {
-        return nome;
+    public void hello() {
+        try {
+            clienteDao.add(new Cliente(cliente.getNome()));
+            listagem = clienteDao.getClientes();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 }

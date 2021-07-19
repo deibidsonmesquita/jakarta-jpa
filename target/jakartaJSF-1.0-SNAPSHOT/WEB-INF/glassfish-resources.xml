@@ -4,7 +4,7 @@
     <jdbc-resource enabled="true" pool-name="MySQLPool"
                    jndi-name="java:app/jdbc/jakartaDS"/>
    
-  <jdbc-connection-pool name="MySQLPool"
+    <jdbc-connection-pool name="MySQLPool"
                           res-type="javax.sql.DataSource"
                           datasource-classname="com.mysql.jdbc.jdbc2.optional.MysqlDataSource">
                                             
